@@ -118,7 +118,7 @@ function getCookie(name){
  * When you override setCookie remember to override getCookie method.
  */
 function setCookie(name,value){
-	document.cookie=name+ "=" +prepareData(value);
+	document.cookie=name+ "=" +prepareData(value) + '; path=/';
 }
 
 var _token = 0;

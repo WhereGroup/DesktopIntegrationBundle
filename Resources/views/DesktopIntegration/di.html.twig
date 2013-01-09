@@ -4,6 +4,7 @@
 <script type="text/javascript">
     var url = '{{ data['bncc']['url'] }}';
     var params = {{ data['bncc']['params'] | json_encode | raw }};
+    var connector;
 
     function clientExists(ip) {
         BNCConnectorMonitor.start();
@@ -23,7 +24,7 @@
         if(clientExists('c1')) {
             connector = new BNCConnector('c2');
 
-            connector.onerror = function(type, o) {
+            connector.onerror = function(type, o) {                
                 connector.destroy();
             };
 
@@ -32,14 +33,10 @@
                 window.open('', '_self', '');
                 window.close();
             };
-
-            connector.sendData('c1', params);
+            
+            connector.sendData('c1', $.param(params));
         } else {
-            if(url == '') {
-                alert('{{ data['bncc']['error'] }}');
-            } else {
-                window.location = url + '?' + params;
-            }
+            window.location = url + '?' + $.param(params);
         }
     });
 </script>

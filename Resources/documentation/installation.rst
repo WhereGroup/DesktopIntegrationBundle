@@ -24,3 +24,21 @@ Finally, issue an ./composer.phar update to install the bundle. CAUTION: This
 will also update all other packages within the constraints laid out in your
 composer.json file - for example Doctrine will be upgraded as anything in the
 2.2.3 to 2.3.x range is allowed.
+
+Activate the bundle
+-------------------
+
+Active the bundle inside your app/AppKernel.php's registerBundles method by adding
+
+new WhereGroup\DesktopIntegrationBundle\WhereGroupDesktopIntegrationBundle()
+
+to the array of registered bundles.
+
+Activate the URL routing
+------------------------
+Add the following lines to the app/config/routing.yml:
+
+wheregroup_desktop_integration:
+    resource: "@WhereGroupDesktopIntegrationBundle/Controller"
+    prefix: "/di"
+    type: annotation

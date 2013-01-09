@@ -1,48 +1,39 @@
 (function($) {
 
     $.widget("wheregroup.wgDesktopIntegration", {
-        options: {
-            url: ''
-        },
-
+        connector: null,
+        
         _create: function() {
-            this.options.url = document.URL;        
-            
             // BNCConnector
-            connector = new BNCConnector("c1");
-            connector.listen = function(who, url) {
-                this._parseParams(url);
+            var self = this;
+            this.connector = new BNCConnector("c1");
+            this.connector.listen = function(who, data) {
+                self._announce({
+                    sender: who,
+                    data: data
+                });
             };
             
             $(document).one('mapbender.setupfinished', $.proxy(this._mapbenderSetupFinished, this));
         },
 
         _mapbenderSetupFinished: function() {
-            var url = this.options.url;
+            var url = document.URL;
             
             if (url.indexOf("?") !== -1) {
                     url = url.substr(url.indexOf("?") + 1);
-                    this._parseParams(url);
+                    this._announce({
+                        sender: undefined,
+                        data: url
+                    });
             }
         },
         
-        _parseParams: function(url) {
-            var rows = url.split("&");
-
-            for(var i=0;i<rows.length;i++) {
-                var tmp = rows[i].split("=");
-
-                if(tmp[0] == "url") {
-                    continue;
-                }
-                
-                jQuery.trigger(tmp[0], tmp[1]);
-                break;
-            }
+        _announce: function(data) {
+            $(document).trigger('desktopintegrationin', data);
         },
 
         _destroy: $.noop
     });
 
 })(jQuery);
-

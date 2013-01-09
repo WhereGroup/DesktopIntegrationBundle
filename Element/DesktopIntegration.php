@@ -26,7 +26,8 @@ class DesktopIntegration extends Element
         return array(
             'js' => array(
                 'BNCConnector.js',
-                'mapbender.element.desktopintegration.js'
+                'mapbender.element.desktopintegration.js',
+                'mapbender.desktopintegration.macros.js'
             ),
             'css' => array()
         );
