@@ -1,0 +1,33 @@
+{
+    "name": "wheregroup/desktopintegration-bundle",
+    "type": "symfony-bundle",
+    "description": "WhereGroup DesktopIntegrationBundle",
+    "keywords": ["Mapbender3", "Desktop Integration"],
+    "homepage": "http://github.com/WhereGroup/DesktopIntegrationBundle",
+    "license": "LGPL",
+    "authors": [
+        {
+                "name": "Christian Wygoda",
+                "email": "christian.wygoda@wheregroup.com"
+        },
+        {
+                "name": "Arash R. Pour",
+                "email": "arash.r.pour@wheregroup.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": ">=2.1,<2.3-dev"
+    },
+    "autoload": {
+        "psr-0": { "WhereGroup\\DesktopIntegrationBundle": "" }
+    },
+    "target-dir": "WhereGroup/DesktopIntegrationBundle",
+    "extra": {
+        "branch-alias": {
+                "dev-master": "1.0.x-dev"
+        }
+    }
+}
+
