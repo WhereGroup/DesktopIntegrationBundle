@@ -45,7 +45,7 @@ class DesktopIntegration extends Element
     public function render()
     {
         return $this->container->get('templating')
-            ->render('WhereGroup:DesktopIntegrationBundle:Element:desktopintegration.html.twig', array(
+            ->render('WhereGroupDesktopIntegrationBundle:Element:desktopintegration.html.twig', array(
                 'id' => $this->getId()));
     }
 }
